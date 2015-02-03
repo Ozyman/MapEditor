@@ -1,0 +1,178 @@
+<html>
+<head>
+<title>Wargear Map XML Editor</title>
+<script type="text/javascript" src="/js/jquery-1.7.2.js"></script>  
+<script type="text/javascript" src="jquery-1.7.2.js"></script>  
+<script type="text/javascript">
+
+  function addToCmdString(stringToAdd){
+    var cmdString = document.forms[0].cmdsToExecute.value;
+    if (cmdString != "")
+      cmdString += "\n";
+    document.forms[0].cmdsToExecute.value = cmdString + stringToAdd
+    if (window.newWin != undefined && !newWin.closed)
+      newWin.close(); 
+}
+
+  function getFactoryMakerCmd(name) {
+    var s = "script";
+    if (window.newWin == undefined || newWin.closed)
+      newWin = window.open('FactoryMakerForm.html','','top=150,left=150,width=575,scrollbars=1');
+    else
+      newWin.focus();
+  } 
+
+  function getModifyBordersCmd(name) {
+    var s = "script";
+    if (window.newWin == undefined || newWin.closed)
+      newWin = window.open('ModifyBordersInputForm.html','','top=150,left=150,width=575,scrollbars=1');
+//      newWin = window.open('ModifyBordersInputForm.html','','top=150,left=150);
+    else
+      newWin.focus();
+  } 
+  function getNeighborlyContinentsCmd() {
+  
+    if (window.newWin == undefined || newWin.closed)
+      newWin = window.open('NeighborContinentsInputForm.html','','top=150,left=150,width=575,scrollbars=1');
+    else
+      newWin.focus();
+
+  }
+  function getCollectorCmd(name) {
+    var s = "script";
+    if (window.newWin == undefined || newWin.closed)
+      newWin = window.open('CollectorInputForm.html','','top=150,left=150,width=575,scrollbars=1');
+    else
+      newWin.focus();
+  } 
+
+  function getSplitBordersCmd()
+ {
+    if (window.newWin == undefined || newWin.closed)
+      newWin = window.open('SplitBordersInputForm.html','','top=150,left=150,width=575,scrollbars=1');
+    else
+      newWin.focus();
+  } 
+  function editCmdsDirectly(){
+  //alert ($("#editCmds").val());
+  if ($("#editCmds").val() == "Edit Commands Directly"){
+    alert("Be careful!");
+    $("textarea").attr("readOnly",false);
+    $("#editCmds").prop('value', 'Done Editing');
+  }
+  else {
+    $("textarea").attr("readOnly",true);
+    $("#editCmds").prop('value', "Edit Commands Directly");
+
+  }
+}
+
+  function clearCmds(){
+  $("textarea").attr("value","");
+}
+
+</script>
+<link rel="stylesheet" type="text/css" href="WGMapEditorStyles.css" />
+
+</head>
+<body>
+<div style=" float: left; font-size:150%">
+<a href="https://sites.google.com/a/prestopnik.com/wgame">ONLINE DOCUMENTATION</a>
+</div>
+
+<div style=" float: right; font-size:100%">
+See <a href="http://www.wargear.net/forum/showthread/2658/Wargear_Advanced_Map_Editor">this post on the wargear forums</a> for more details and discussion.
+</div>
+<br />
+<!--<h1 style="color:red;font-size:300%">TESTING - DO NOT USE - DOES NOT WORK!</h1> -->
+<h3 style="color:red; font-size:150%; text-align:center">BETA MODE - PLEASE VERIFY RESULTS & REPORT BUGS</h3>
+
+<table class="CmdTable">
+<tr>
+<td>
+<input type="button" style="font-size:125%" value="Delete Continents" onClick="addToCmdString('deleteAllContinents')">
+</td>
+<td>
+ <input type="button" style="font-size:125%" value="Add Continents based on Neighbors" onClick="getNeighborlyContinentsCmd()">
+</td>
+<td>
+  <input type="button" style="font-size:125%" value="Add Collector Continents" onClick="getCollectorCmd('Collector Entry')">
+ </td>
+</tr>
+<tr>
+<td>
+<div class="FunctionDescription">Deletes every continent on the map.</div></td>
+<td>
+
+<div class="FunctionDescription">
+For hordes, and similar continents with membership based on neighboring territories.
+<ul style="text-align:left">
+<li>Limiting to specified territories (as base & neighbors)</li>
+<li>Neighbors with N border hops.</li>
+<li>Factory or normal continents.</li>
+</div>
+</td>
+<td >
+<div class="FunctionDescription">Define a set of territories.  Continents created for each territory in the set, and/or each pair of territories in the set.</div>
+</td>
+</tr>
+</table> 
+<br />
+<br />
+<br />
+<table class="CmdTable">
+<td>
+  <input type="button" style="font-size:125%" value="Modify Borders" onClick="getModifyBordersCmd('Modify Borders Entry')">
+<!--
+<p style="color:red;font-size:80%">
+Modify Borders is in beta.  Please let me know if you encounter any problems.
+</p>
+-->
+</td>
+<td> 
+ <input type="button" style="font-size:125%" value="FactoryMaker" onClick="getFactoryMakerCmd('Factory Maker Entry')">
+</td>
+<td> 
+ <input type="button" style="font-size:125%" value="SplitBorders" onClick="getSplitBordersCmd()">
+</td>
+</tr>
+
+<tr>
+<td>
+<div class="FunctionDescription">
+Define 'To' and 'From' territory sets to define a set of borders, then modify border type, attack/defense mods or direction.
+</div>
+</td>
+
+<td>
+<div class="FunctionDescription">
+Create factory continents.   Define 'Factory' and 'Member' territories.  Factory targets are all territories in 'Factory' set, with all 'Member' territories as members of the continent.
+</div>
+</td>
+<td>
+<div class="FunctionDescription">
+Split some or all of your two-way borders into two one-way borders.  <br />
+</div>
+</td>
+</tr>
+</table> 
+<hr>
+Some functions do not yet have a GUI form for entry.  You need to enter them by hand:
+<ul>
+<li><a href="https://sites.google.com/a/prestopnik.com/wgame/documentation/addborders">Add Borders</a></li>
+</ul>
+Want me to make GUI forms for these?  Request it on the forums.
+   <hr>
+   <form enctype="multipart/form-data" 
+                     action="/cgi-bin/process_WG_XML_file.py" method="post">
+   <p>Commands to Execute</p>
+   
+   <textarea name="cmdsToExecute" readonly="readonly" rows="6" cols="120"></textarea>
+   <p><input type="button" id="editCmds" value="Edit Commands Directly" onClick="editCmdsDirectly()"></p>
+   <!-- <p><input type="button" id="clearCmds" value="Clear Commands" onClick="clearCmds()"></p> -->
+   <p>File: <input type="file" name="filename" id="filename"/></p>
+   <p><input type="submit" value="Process" /></p>
+   <p><input type="checkbox" name="debug" value="off" /> Debug?</p>
+   </form>
+</body>
+</html>

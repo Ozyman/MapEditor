@@ -1,0 +1,49 @@
+<html>
+<head>
+<title>Wargear Map XML Editor</title>
+<script type="text/javascript" src="../../js/jquery-1.7.2.js"></script>  
+<script type="text/javascript" src="/js/jquery-1.7.2.js"></script>  
+<script type="text/javascript" src="WGAME.js"></script>
+<script type="text/javascript">
+
+function passCmdString(form) {
+
+    var cmdString = "SplitBorders;";
+    cmdString += cmdStringFromTerritorySetForm("Side1");
+    cmdString += cmdStringFromTerritorySetForm("Side2");
+
+    cmdString += cmdStringDCFromTerritorySetForm("Side1");
+    cmdString += cmdStringDCFromTerritorySetForm("Side2");
+
+  //alert(cmdString);
+
+  window.opener.addToCmdString(cmdString);
+} 
+</script>
+<link rel="stylesheet" type="text/css" href="WGMapEditorStyles.css" />
+
+</head>
+<body>
+<h1>Split Borders</h1>
+<h3><a href="https://sites.google.com/a/prestopnik.com/wgame/documentation/split-borders">ONLINE DOCUMENTATION FOR THIS FORM</a></h3>
+
+<h1>How To Use</h1>
+<p>
+Define two sets of territories below (Side1 and Side) Any two-way borders that have one territory in the Side1 group, and one territory in the Side2 group will be split into two one-way territories.
+</p>
+<form action="#" style="width: 450px;">
+
+<div class="TerritoriesSetInput" id="Side1"></div>
+
+<div class="WGFormElementSeperator"></div>
+
+<div class="TerritoriesSetInput" id="Side2"></div>
+
+
+<br />
+<hr>
+<p><input type=button  onClick="passCmdString(this.form)" value="Split Borders!" /></p>
+</form>
+
+</body>
+</html>

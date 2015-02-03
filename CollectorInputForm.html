@@ -1,0 +1,64 @@
+<html>
+<head>
+<title>Wargear Map XML Editor</title>
+<script type="text/javascript" src="../../js/jquery-1.7.2.js"></script>  
+<script type="text/javascript" src="/js/jquery-1.7.2.js"></script>  
+<script type="text/javascript" src="WGAME.js"></script>
+<script type="text/javascript">
+
+function passCmdString(form) {
+
+    var cmdString = "AddCollectorContinents;";
+
+    cmdString += cmdStringFromTerritorySetForm("Collectors");
+
+    cmdString += form.individualBonus.value;
+    cmdString +=";";
+    
+    cmdString += form.pairBonus.value;
+    cmdString +=";"; 
+
+    cmdString += cmdStringDCFromTerritorySetForm("Collectors");
+    //alert(cmdString);
+
+    window.opener.addToCmdString(cmdString);
+} 
+</script>
+<link rel="stylesheet" type="text/css" href="WGMapEditorStyles.css" />
+
+</head>
+
+<body style="width:450px">
+<h1>Collector Continents</h1>
+<h3><a href="https://sites.google.com/a/prestopnik.com/wgame/documentation/add-collector-continents">ONLINE DOCUMENTATION FOR THIS FORM</a></h3>
+
+<h1>How To Use</h1>
+<ol>
+<li>Define a set of territories below.</li>
+<li>For each territory in the set a new single-territory continent is created with
+    the 'Individual Bonus'.  </li>
+<li>For each pair of territory in the set a new single-territory continent is created with
+	the 'Individual Bonus'.  </li>
+</ol>
+A set of N territories has N*(N-1)/2 pairs.
+</p>
+
+   <form action="#">
+<form action="#" style="width: 450px;">
+
+<div class="TerritoriesSetInput" id="Collectors"></div>
+
+<h2>Define Bonuses</h2>
+<div style="font-size:75%" class="alert">Leave values of '0' for no bonus of that type.</div>
+<div class="FormEntryGroup">
+<div style="font-size:120%;">Individual Bonus: <input type="text" name="individualBonus" value="0" /></div>
+<div style="font-size:120%;">Pair Bonus: <input type="text" name="pairBonus" value="0" /></div>
+</div>
+
+<br />
+<hr>
+<p><input type=button  onClick="passCmdString(this.form)" value="Add Factories!" /></p>
+</form>
+
+</body>
+</html>

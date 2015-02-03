@@ -1,0 +1,71 @@
+<html>
+<head>
+<title>Wargear Map XML Editor</title>
+<script type="text/javascript" src="../../js/jquery-1.7.2.js"></script>  
+<script type="text/javascript" src="/js/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="WGAME.js"></script>
+<script type="text/javascript">
+
+  function passString(form) {
+
+  var CmdString = "ContinentsByNeighbors;";
+
+  CmdString += cmdStringFromTerritorySetForm("Base");
+  CmdString += cmdStringFromTerritorySetForm("Neighbor");
+
+  
+  CmdString += cmdStringFromNewContinentForm("New");
+
+  CmdString += form.neighborDistance.value;
+  CmdString +=";";
+
+  CmdString += form.factoryTarget.value;
+  CmdString +=";";
+
+  CmdString += cmdStringDCFromTerritorySetForm("Base");
+  CmdString += cmdStringDCFromTerritorySetForm("Neighbor");
+
+  //alert(CmdString);
+  window.opener.addToCmdString(CmdString);
+  } 
+
+</script>
+<link rel="stylesheet" type="text/css" href="WGMapEditorStyles.css" />
+
+</head>
+ <body style="width:450px">
+<h1>Add Contents by Neighbors</h1>
+<h3><a href="https://sites.google.com/a/prestopnik.com/wgame/documentation/add-continents-based-on-neighbors">ONLINE DOCUMENTATION FOR THIS FORM</a></h3>
+
+<h1>How To Use</h1>
+<p>
+Define two sets of territories below: "Base" territories & "Neighbor" territories. For every "Base" territory a continent will be created.  The members of the continent will be the "Base" territory, as well as any other territories in the "Neighbors" set that are within range.
+</p>
+
+<form action="#" style="width: 450px;">
+
+<div class="TerritoriesSetInput" id="Base"></div>
+
+<div class="WGFormElementSeperator"></div>
+
+<div class="TerritoriesSetInput" id="Neighbor"></div>
+
+<div class="NewContinentInput" id="New"></div>
+<div style="height: 20px;" ></div>
+<div style="font-size:130%;">Max Distance for Neighbors:<input type="text" name="neighborDistance" value="1" /></div>
+
+<div style="height:15px;" ></div>
+<div style="font-size:75%" class="alert">
+Leave empty for a non-factory continent.<br />
+Enter "base" to use continent base territory for the factory.<br />
+Enter a number to use a territoryID for the factory.<br />
+</div>
+<div style="font-size:130%;">Factory Target:<input type="text" name="factoryTarget" value="" /></div>
+
+<br />
+<hr>
+<p><input type=button  onClick="passString(this.form)" value="Add Continents!" /></p>
+</form>
+
+</body>
+</html>

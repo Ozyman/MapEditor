@@ -1,0 +1,71 @@
+<html>
+<head>
+<title>Wargear Map XML Editor</title>
+<script type="text/javascript" src="/js/jquery-1.7.2.js/"></script>  
+<script type="text/javascript">
+
+function showHordesBonusExplanation()
+{
+alert("The number of units a player will get for controlling this continent");
+}
+function showHordesContSuffixExplanation()
+{
+alert("This is added to the base territory name to get the continent name")
+}
+function showBaseRegexExplanation()
+{
+alert("Only territorires that match this regex will have continents added.  Usually this is just a substring that is in all continents you want to include.  See the thread on the wargear forums for more details and examples.")
+}
+function showNeighborRegexExplanation()
+{
+alert("Only neighbors that match this regex will be members of the new continents.  Usually this is just a substring that is in all continents you want to include.  See the thread on the wargear forums for more details and examples.")
+}
+
+function passHordesString(form) {
+
+  var hordesCmdString = "hordify ";
+
+
+  hordesCmdString += form.hordesBonus.value;
+  hordesCmdString +=" ";
+  
+  hordesCmdString += form.hordesContinentSuffix.value;
+  hordesCmdString +=" ";
+  
+  hordesCmdString += form.baseRegex.value;
+  hordesCmdString +=" ";
+  
+  hordesCmdString += form.neighborRegex.value;
+
+  //alert(hordesCmdString);
+
+ if (form.hordesBonus.value != "0" && form.hordesBonus.value != "")
+   window.opener.addToCmdString(hordesCmdString);
+} 
+</script>
+<link rel="stylesheet" type="text/css" href="WGMapEditorStyles.css" />
+
+</head>
+<body>
+<h3><a href="https://sites.google.com/a/prestopnik.com/wgame/documentation/hordify">ONLINE DOCUMENTATION FOR THIS FORM</a></h3>
+<p>
+   <form action="#">
+   <h3>Hordify</h3>
+<dl class="WGForm">
+<dt><label for="hordesBonus">hordesBonus:</label><span align=right style="color:red;cursor:help" onClick="showHordesBonusExplanation()">?</span></dt>
+<dd><input type="text" name="hordesBonus" value="0" /></dd>
+
+<dt><label for="hordesContinentSuffix">hordesContinentSuffix:</label><span align=right style="color:red;cursor:help" onClick="showHordesContSuffixExplanation()">?</span></dt>
+<dd><input type="text" name="hordesContinentSuffix" value="" /></dd>
+
+<dt><label for="baseRegex">baseRegex:</label><span align=right style="color:red;cursor:help" onClick="showBaseRegexExplanation()">?</span></dt>
+<dd><input type="text" name="baseRegex" value=".*" /></dd>
+
+<dt><label for="neighborRegex">neighborRegex:</label><span align=right style="color:red;cursor:help" onClick="showNeighborRegexExplanation()">?</span></dt>
+<dd><input type="text" name="neighborRegex" value=".*" /></dd>
+</dl>
+   <hr>
+   <p><input type=button  onClick="passHordesString(this.form)" value="Add Hordes!" /></p>
+   </form>
+</body>
+</html>

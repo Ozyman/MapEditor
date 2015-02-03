@@ -1,0 +1,80 @@
+/*
+.WGForm {width: 50%;}
+
+.WGForm dt {float: left;}
+ */
+.WGForm dd {margin: 0 5em 1em 5em;}
+
+.WGFormElementSeperator { height: 1px; }
+
+.FunctionDescription { 
+font-size:100%;
+text-vertical-
+}
+
+.FormEntryGroup {
+border: 1px dashed grey;
+padding:5px;
+}
+
+th, td
+{
+padding:15px;
+}
+
+.alert {
+color: AA0000;
+}
+
+body {background-color:#CCDDEE;} 
+.CmdTable, .CmdTable td, .CmdTable th {
+    padding: 10px;
+    width:800px;
+    border: 10px solid black;
+    vertical-align:top;
+}
+
+.CmdTable {
+margin-left: auto;
+margin-right: auto;
+}
+
+
+table
+{
+border-collapse:collapse;
+
+}
+table, th, td
+{
+text-align:center;
+vertical-align:center;
+align: center;
+}
+
+/*DL, DT, DD TAGS LIST DATA*/
+dl {
+    margin-bottom:50px;
+}
+ 
+dl dt {
+/*    background:#5f9be3; */
+    background:#ffffff;
+    color:#000000;
+    float:left;
+    font-weight:bold;
+    margin-right:10px;
+    padding:3px;
+    width:100%;
+}
+ 
+dl dd {
+    margin:2px 0;
+    padding:3px 0;
+}
+
+
+h1,h2,h3,h4,h5,h6{
+margin-bottom: 0px;
+padding-bottom: 0px;
+}

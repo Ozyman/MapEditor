@@ -1,0 +1,56 @@
+<html>
+<head>
+<title>Wargear Map XML Editor</title>
+<script type="text/javascript" src="../../js/jquery-1.7.2.js"></script>  
+<script type="text/javascript" src="/js/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="WGAME.js"></script>
+<script type="text/javascript">
+
+function passString(form) {
+
+    var CmdString = "FactoryMaker;";
+
+    CmdString += cmdStringFromTerritorySetForm("Member");
+    CmdString += cmdStringFromTerritorySetForm("Factory");
+    
+    CmdString += cmdStringFromNewContinentForm("New");
+
+    CmdString += cmdStringDCFromTerritorySetForm("Member");
+    CmdString += cmdStringDCFromTerritorySetForm("Factory");
+
+  //alert(CmdString);
+ window.opener.addToCmdString(CmdString);
+} 
+
+</script>
+<link rel="stylesheet" type="text/css" href="WGMapEditorStyles.css" />
+</head>
+
+ <body style="width:450px">
+<h1>Factory Maker</h1>
+<h3><a href="https://sites.google.com/a/prestopnik.com/wgame/documentation/factory-maker">ONLINE DOCUMENTATION FOR THIS FORM (not yet)</a></h3>
+<h3 class="alert">BETA MODE - Please verify your results and report any incorrect behavior.</h3>
+
+<h1>How To Use</h1>
+<p>
+Define two sets of territories below: Member Territories & Factory Territories.  For each factory territory a new factory will be created with all member territories as the continent members.
+</p>
+
+
+<form action="#" style="width: 450px;">
+
+<div class="TerritoriesSetInput" id="Member"></div>
+
+<div class="WGFormElementSeperator"></div>
+
+<div class="TerritoriesSetInput" id="Factory"></div>
+
+<div class="NewContinentInput" id="New"></div>
+
+<br />
+<hr>
+<p><input type=button  onClick="passString(this.form)" value="Add Factories!" /></p>
+</form>
+
+</body>
+</html>
